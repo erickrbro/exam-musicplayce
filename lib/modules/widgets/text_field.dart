@@ -6,18 +6,21 @@ class TextFieldWidget extends StatelessWidget {
   final String label;
   final IconData icon;
   final bool obscureText;
-  const TextFieldWidget({
-    Key? key,
-    required this.label,
-    required this.icon,
-    required this.obscureText,
-  }) : super(key: key);
+  final TextEditingController textController;
+  const TextFieldWidget(
+      {Key? key,
+      required this.label,
+      required this.icon,
+      required this.obscureText,
+      required this.textController})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(top: 10),
       child: TextFormField(
+        controller: textController,
         obscureText: obscureText,
         autofocus: true,
         style: TextStyles.input,

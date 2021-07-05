@@ -1,8 +1,13 @@
+import 'dart:convert';
+
+import 'package:exam_musicplayce/models/use_model.dart';
 import 'package:exam_musicplayce/modules/themes/app_colors.dart';
+import 'package:exam_musicplayce/modules/themes/preferences_keys.dart';
 import 'package:exam_musicplayce/modules/themes/text_styles.dart';
 import 'package:exam_musicplayce/modules/widgets/button_styled.dart';
 import 'package:exam_musicplayce/modules/widgets/text_field.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({Key? key}) : super(key: key);
@@ -12,6 +17,11 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
+  TextEditingController nameInputController = TextEditingController();
+  TextEditingController mailInputController = TextEditingController();
+  TextEditingController passwordInputController = TextEditingController();
+  TextEditingController confirmInputController = TextEditingController();
+
   bool showPassword = false;
 
   @override
@@ -51,25 +61,29 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           style: TextStyles.title,
                         ),
                       ),
-                      const TextFieldWidget(
+                      TextFieldWidget(
                         label: "Nome",
                         icon: Icons.person_pin_rounded,
                         obscureText: false,
+                        textController: nameInputController,
                       ),
-                      const TextFieldWidget(
+                      TextFieldWidget(
                         label: "Email",
                         icon: Icons.inbox_rounded,
                         obscureText: false,
+                        textController: mailInputController,
                       ),
                       TextFieldWidget(
                         label: "Senha",
                         icon: Icons.lock_rounded,
                         obscureText: !showPassword,
+                        textController: passwordInputController,
                       ),
                       TextFieldWidget(
                         label: "Confirme a senha",
                         icon: Icons.lock_rounded,
                         obscureText: !showPassword,
+                        textController: confirmInputController,
                       ),
                       Padding(
                         padding: const EdgeInsets.only(top: 10),
@@ -110,7 +124,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     children: [
                       ButtonStyledWidget(
                         label: 'Criar Conta',
-                        call: () => Navigator.pop(context),
+                        call: () {
+                          SignUp();
+                          Navigator.pop(context);
+                        },
                       )
                     ],
                   ),
@@ -119,5 +136,29 @@ class _SignUpScreenState extends State<SignUpScreen> {
             ),
           ),
         ));
+  }
+
+  // ignore: non_constant_identifier_names
+  void SignUp() {
+    User newUser = User(
+      name: nameInputController.text,
+      mail: mailInputController.text,
+      password: passwordInputController.text,
+      keepOn: true,
+    );
+
+    // ignore: avoid_print
+    print(newUser);
+    saveUser(newUser);
+  }
+
+  void saveUser(User user) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setString(
+      PreferencesKeys.activeUser,
+      json.encode(
+        user.toJson(),
+      ),
+    );
   }
 }
