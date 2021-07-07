@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "130526416880",
+    "firebase_url": "https://exam-musicplayce-bae07-default-rtdb.firebaseio.com",
+    "project_id": "exam-musicplayce-bae07",
+    "storage_bucket": "exam-musicplayce-bae07.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:130526416880:android:d972a9bd6ed7ddfa439735",
+        "android_client_info": {
+          "package_name": "com.example.exam_musicplayce"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "130526416880-bi0r4sg4tn7r95b99pak66jhmhrj3vja.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.exam_musicplayce",
+            "certificate_hash": "f79c979a416d7a79ea428cafdcbe7e38d1555a9d"
+          }
+        },
+        {
+          "client_id": "130526416880-quiocrkmnjoa456kdgk92rl6aqi57546.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDcSXesRGv1ydDtA5FznE3UDaCX4_8FB0c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "130526416880-quiocrkmnjoa456kdgk92rl6aqi57546.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
